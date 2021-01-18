@@ -1,0 +1,12 @@
+<div class="card animate__animated animate__fadeIn mt-5">
+    <div class="card-content">
+        <p class="title">{{title}}</p>
+        <div style="display: block;">
+            <canvas baseChart 
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType">
+            </canvas>
+        </div>
+    </div>
+</div>

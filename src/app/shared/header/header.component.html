@@ -1,0 +1,38 @@
+<nav class="navbar is-primary">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="error">
+        <img src="../../../assets/images/Purissima_Logo.png" alt="Purisima de Venezuela" width="112" height="28">
+      </a>
+      <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+       
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            {{usuario.Nombre}} {{usuario.Apellido}} 
+            <figure class="image is-32x32">
+              <img class="is-rounded" [src]='usuario.profilePic()'>
+            </figure>
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" routerLink='/dashboard/profile'>
+              Ver perfil
+            </a>
+            <a class="navbar-item">
+              Configuración
+            </a>
+            <hr class="navbar-divider">
+              <a class="navbar-item" (click)='logout()'>
+                Cerrar Sesión
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>

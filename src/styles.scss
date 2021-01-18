@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Hanalei+Fill&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100&display=swap');
+
+$verde : rgb(0,150,135);
+$purpura: rgb(105, 65, 235);
+$verde_claro: rgb(4, 253, 228);
+$gris_claro: rgb(231, 231, 231);
+
+$primary:$verde;
+$link:$verde_claro;
+$info-light:$purpura;
+
+$menu-item-color:$gris_claro;
+$menu-label-color :rgb(209, 209, 209);
+.title{
+  font-family: 'Advent Pro', sans-serif;
+}
+
+
+/*CSS CUSTOM*/
+
+/************************************************************
+                        SIDE BAR
+*************************************************************/
+
+.sidebar{
+  position: fixed;
+  background-color: rgb(37, 37, 38);
+  width:18%;
+  height: 100%;
+  padding:15px;
+  padding-top:50px;
+}
+/************************************************************
+                       END SIDE BAR
+*************************************************************/
+
+/************************************************************
+                       CUERPO DOC
+*************************************************************/
+
+.contenido{
+    margin-left: 20%;
+    width: 80%;
+    height: 100%;
+    padding:25px;
+    padding-top: 0px;
+}
+
+/************************************************************
+                    END CUERPO DOC
+*************************************************************/
+.is-240x240{
+  width: 240px;
+  height: 240px;
+}
+
+.err-body{
+  text-align: center;
+}
+
+.err{
+  margin-top: 100px;
+  font-family: 'Hanalei Fill', cursive;
+  font-size: 120px;
+}
+
+.err_img{
+  font-size: 200px;
+}
+
+.err-message{
+  font-family: 'Yellowtail', cursive;
+  font-size: 30px;
+}
+
+.centrado{
+  text-align: center;
+}
+
+.is-left{
+  text-align: left;
+}
+.is-right{
+  text-align: right;
+}
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/elements/container.sass";
+@import "../node_modules/bulma/sass/elements/title.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/components/navbar.sass";
+@import "../node_modules/bulma/sass/layout/hero.sass";
+@import "../node_modules/bulma/sass/layout/_all.sass";
+@import "../node_modules/bulma/sass/layout/section.sass";
+@import "../node_modules/bulma/css/bulma.min.css";
+@import "../node_modules/bulma/sass/components/menu.sass";

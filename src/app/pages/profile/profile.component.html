@@ -1,0 +1,52 @@
+<div class="columns">
+    <div class="column">
+        <div class="card animate__animated animate__fadeIn mt-5">
+            <div class="card-content">
+                <p class="title">Perfil</p>
+                <article class="message is-info">
+                    <div class="message-body">
+                        <strong>Nombre y Apellido:</strong> <br>
+                        <p class="subtitle">{{usuario.Nombre}} {{usuario.Apellido}}</p>
+                        <hr>
+                        <strong>Email:</strong> <br> {{usuario.Correo}} <br>
+                        <strong>AnyDesk</strong> <br> {{usuario.AnyDesk}}
+                    </div>
+                  </article>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="card animate__animated animate__fadeIn mt-5">
+            <div class="card-content">
+                <div class="columns">
+                    <div class="column">
+                      <figure class="image">
+                        <img [src]="usuario.profilePic()" alt="Andres Calcurian">
+                      </figure>
+                    </div>
+                    <div class="column">
+                        <p class="subtitle">
+                            Cambiar imagen de perfil
+                        </p>
+                        <br><br><br><br>
+                        <div class="field">
+                            <div class="file is-warning is-boxed">
+                              <label class="file-label">
+                                <input class="file-input" type="file" name="resume">
+                                <span class="file-cta">
+                                  <span class="file-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                  </span>
+                                  <span class="file-label">
+                                    Subir imagen…
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

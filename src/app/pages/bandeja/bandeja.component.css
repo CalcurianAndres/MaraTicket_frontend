@@ -1,0 +1,23 @@
+.tarj{
+    display: block;
+    width: 100%;
+    height: 60px;
+    color: white;
+    text-align: center;
+}
+.tarj p {
+    color: white;
+}
+
+.abiertos{
+    background-color: rgb(59, 128, 242);
+}
+.pendientes{
+    background-color: rgb(105, 65, 235);
+}
+.Ejecutandose {
+    background-color: rgb(69, 230, 147);
+}
+.Cerrados{
+    background-color: rgb(48, 50, 57);
+}

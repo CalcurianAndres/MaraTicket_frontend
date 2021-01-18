@@ -1,0 +1,26 @@
+<div class="banner centrado mt-5">
+<p class="titulo">Dashboard</p>
+<img src="../../../assets/images/Purissima_Logo.png" alt="Purissima de Venezuela" width="350px">
+</div>
+<hr>
+<div class="columns">
+<div class="column" *ngFor='let item of menuItems'>
+        <div class="options centrado {{item.color}}">
+            <p class="titulo">
+                {{item.titulo}}
+            </p>
+            <div class="columns">
+                <div class="column is-one-third">
+                    <i [class]="item.icono"></i>
+                </div>
+                <div class="column is-left">
+                    <ul>
+                        <li *ngFor='let subMenuItem of item.submenu'>
+                            <a routerLinkActive='is-active' [routerLink]="subMenuItem.url"><i [class]="subMenuItem.icono"></i> {{subMenuItem.titulo}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>            
+        </div>
+    </div>    
+</div>

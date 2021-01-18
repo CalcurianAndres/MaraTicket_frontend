@@ -1,0 +1,30 @@
+<!--<section class="sidebar">
+  <ul class="Menu">
+    <li>Menu Item</li>
+    <li>Menu Item</li>
+    <li>Menu Item</li>
+  </ul>
+  <div class="menu-icons">
+
+    <i class="fas fa-user fa-2x mt-5"></i><br>
+    <i class="fas fa-ticket-alt fa-2x mt-5"></i>
+
+  </div> 
+</section>-->
+<aside class="menu sidebar" ><br><br>
+  <p class="menu-label mt-5">
+    Andres Calcurian
+  </p>
+  <div class="contenidos" *ngFor='let item of menuItems'>
+    <p class="menu-label">
+      {{item.titulo}}
+    </p>
+    <ul class="menu-list">
+      <li *ngFor='let subMenuItem of item.submenu'>
+        <a routerLinkActive='is-active' [routerLink]="subMenuItem.url">
+          <i [class]="subMenuItem.icono"></i> {{subMenuItem.titulo}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
