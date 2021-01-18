@@ -18,7 +18,11 @@ export class BreadcrumbsComponent implements OnDestroy {
     this.tituloSubs$ = this.getArgumentosRuta()
                       .subscribe(data =>{
                           this.titulo = data.titulo;
-                          document.title = `Mara Ticket - ${data.titulo}`
+                          if(this.titulo){
+                            document.title = `Mara Ticket - ${data.titulo}`
+                          }else{
+                            document.title = `Mara Ticket`
+                          }
                       });    
   }
   
