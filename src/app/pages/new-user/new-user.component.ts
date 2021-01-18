@@ -40,10 +40,12 @@ export class NewUserComponent {
         .subscribe( resp => {
         this.cargando = false;
           Swal.fire('Usuario creado', 'Usuario creado exitosamente', 'success');
+          this.formSubmitted = false;
+          this.newUserForm.reset();
         }, (err)=> {
           //si sucede un error
           this.cargando = false;
-          Swal.fire('Error', err.error.err.errors.Correo.message, 'error')
+          Swal.fire('Error', err.error.err.errors.Correo.message, 'error');
         } );
 
   }
