@@ -42,11 +42,24 @@ export class UsersComponent implements OnInit {
   }
 
   borrarUsuario(id:string){
-    this.usuarioService.EliminarUsuario(id)
-      .subscribe(resp => {
-        this.obtenerUsuarios(this.desde);
-        Swal.fire('Eleminado', 'Este usuario fue eliminado satisfactoriamente', 'success');
-      })
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "El usuario será eliminado",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.EliminarUsuario(id)
+          .subscribe(resp => {
+            this.obtenerUsuarios(this.desde);
+            Swal.fire('Eliminado', 'Este usuario fue eliminado satisfactoriamente', 'success');
+          })
+      }
+    })
+
   }
 
   obtenerUsuarios(desde:number){

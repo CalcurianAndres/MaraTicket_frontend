@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
+import { TicketService } from 'src/app/services/ticket.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -8,15 +10,26 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styles: [
   ]
 })
-export class NuevoComponent implements OnInit {
+export class NuevoComponent {
 
   public usuario:Usuario;
 
-  constructor(private usuarioService:UsuarioService) {
+  public newTicketForm = this.fb.group({
+    Titulo:['', Validators.required],
+    Descripcion:['', Validators.required],
+  });
+
+  constructor(private usuarioService:UsuarioService,
+              private ticketService:TicketService,
+              private fb:FormBuilder) {
     this.usuario = usuarioService.usuario;
   }
 
-  ngOnInit(): void {
+  NuevoTicket(){
+    this.ticketService.crearTicket(this.newTicketForm.value)
+        .subscribe(resp => {
+          console.log(resp)
+        })
   }
 
 }

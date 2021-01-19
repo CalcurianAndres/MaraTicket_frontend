@@ -2,6 +2,10 @@
     <div class="card-content">
         <p class="title">Nuevo ticket</p>
         <!--inputs-->
+        <form
+              autocomplete="off"
+              [formGroup]="newTicket"
+              (ngSubmit)="crearTicket()">
         <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">De</label>
@@ -90,6 +94,7 @@
                 <button class="button is-primary is-end">
                   Generar ticket
                 </button>
+          </form>
               </div>
             </div>
           </div>

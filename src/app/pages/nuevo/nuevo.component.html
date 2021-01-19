@@ -2,6 +2,10 @@
     <div class="card-content">
         <p class="title">Nuevo ticket</p>
         <!--inputs-->
+        <form
+              autocomplete="off"
+              [formGroup]="newTicketForm"
+              (ngSubmit)="NuevoTicket()">
         <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">De</label>
@@ -38,7 +42,10 @@
             <div class="field-body">
               <div class="field">
                 <p class="control">
-                  <input class="input" type="email" placeholder="Asunto">
+                  <input class="input" 
+                          type="email" 
+                          placeholder="Asunto"
+                          formControlName="Titulo">
                 </p>
               </div>
             </div>
@@ -51,7 +58,9 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <textarea class="textarea" placeholder="Descripción del problema"></textarea>
+                  <textarea class="textarea" 
+                            placeholder="Descripción del problema"
+                            formControlName='Descripcion'></textarea>
                 </div>
               </div>
             </div>
@@ -93,5 +102,6 @@
               </div>
             </div>
           </div>
+      </form>
     </div>
 </div>
