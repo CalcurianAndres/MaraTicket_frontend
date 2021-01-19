@@ -24,17 +24,21 @@ export class UsuarioService {
   constructor(private http:HttpClient,
               private router:Router) { }
 
+  get token():string{
+    return localStorage.getItem('token') || '';
+  }
+
   logout(){
     localStorage.removeItem('token');
     this.router.navigateByUrl('login');
   }
 
   validarToken():Observable<boolean>{
-    const token = localStorage.getItem('token') || '';
+    
 
     return this.http.get(`${login_url}/renew`,{
       headers:{
-        'Authorization':token
+        'Authorization':this.token
       }
     }).pipe(
       tap( (resp:any) =>{
@@ -51,10 +55,9 @@ export class UsuarioService {
   }
 
   crearUsuario( formData:NewUserForm ) {
-    const token = localStorage.getItem('token') || '';
     return this.http.post(`${ base_url }/usuario`, formData, {
       headers:{
-        'Authorization':token
+        'Authorization':this.token
       }
     });
   }

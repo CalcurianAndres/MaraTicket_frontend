@@ -52,7 +52,7 @@ export class SidebarService {
       icono: 'fas fa-users-cog',
       submenu: [
         {
-          titulo:'usuarios',
+          titulo:'Usuarios',
           url:'usuarios',
           icono: 'fas fa-users'
         },

@@ -1,22 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario.model';
+import { FileUploadsService } from 'src/app/services/file-uploads.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls:  ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent{
+
+  cargando = false;
 
   public usuario:Usuario;
+  public ImgSubir!:File;
 
-  constructor(private usuarioService:UsuarioService) {
+  constructor(private usuarioService:UsuarioService,
+              private fileUploadsService:FileUploadsService) {
     this.usuario = usuarioService.usuario;
   }
 
+  CambiarImagen( event:any ){
+    this.ImgSubir = (event.target).files[0];
+    document.getElementsByClassName('file-name')[0].innerHTML = this.ImgSubir.name;
+  }
 
-  ngOnInit(): void {
+  subirImagen(){
+    this.cargando = true;
+    this.fileUploadsService.actualizarFoto(this.ImgSubir, 'usuarios', this.usuario._id )
+    .then(img => {
+      if(img){
+        this.usuario.img = img;
+        document.getElementsByClassName('file-name')[0].innerHTML = 'Sin archivo...'
+      }
+      this.cargando = false;
+    });
   }
 
 }
