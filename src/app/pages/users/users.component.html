@@ -1,6 +1,6 @@
 <div class="card animate__animated animate__fadeIn mt-5">
     <div class="card-content">
-        <p class="title">Usuarios</p>
+        <p class="title">Usuarios ({{total}})</p>
         <table class="table is-fullwidth">
             <thead>
                 <tr>
@@ -14,13 +14,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td>Andres</td>
-                    <td>Calcurian</td>
-                    <td>calcurianandres@gmail.com</td>
-                    <td>123456987</td>
-                    <td>ADMIN_ROLE</td>
+                <tr *ngFor="let usuario of usuarios">
+                    <td>x</td>
+                    <td>{{usuario.Nombre}}</td>
+                    <td>{{usuario.Apellido}}</td>
+                    <td>{{usuario.Correo}}</td>
+                    <td>{{usuario.AnyDesk}}</td>
+                    <td>{{usuario.Role}}</td>
                     <td>
                         <div class="icon-text">
                             <a>
@@ -29,7 +29,7 @@
                                 </span>
                             </a>
                              
-                            <a>
+                            <a (click)='borrarUsuario(usuario._id)'>
                                 <span class="icon has-text-danger">
                                     <i class="fas fa-user-minus"></i>
                                 </span>
@@ -40,8 +40,8 @@
             </tbody>
         </table>
         <nav class="pagination is-small" role="navigation" aria-label="pagination">
-            <a class="pagination-previous">Previous</a>
-            <a class="pagination-next">Next page</a>
+            <a class="pagination-previous" (click)="previous()">Previous</a>
+            <a class="pagination-next" (click)="next()">Next page</a>
         </nav>
     </div>
 </div>

@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 import { NewUserForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
+import { usuariosObtenidos } from '../interfaces/usuarios.interface';
 
 import { environment } from 'src/environments/environment';
 import { tap, map, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { Router } from '@angular/router';
+
 import { Usuario } from '../models/usuario.model';
 
 
@@ -27,6 +30,11 @@ export class UsuarioService {
   get token():string{
     return localStorage.getItem('token') || '';
   }
+  get headers(){
+    return {
+      'Authorization':this.token
+    }
+   }
 
   logout(){
     localStorage.removeItem('token');
@@ -37,9 +45,7 @@ export class UsuarioService {
     
 
     return this.http.get(`${login_url}/renew`,{
-      headers:{
-        'Authorization':this.token
-      }
+      headers:this.headers
     }).pipe(
       tap( (resp:any) =>{
 
@@ -56,14 +62,24 @@ export class UsuarioService {
 
   crearUsuario( formData:NewUserForm ) {
     return this.http.post(`${ base_url }/usuario`, formData, {
-      headers:{
-        'Authorization':this.token
-      }
+      headers:this.headers
     });
   }
 
   Login( formData:LoginForm ) { 
     return this.http.post(login_url, formData);
+  }
+
+  ObtenerUsuarios( desde:number = 0){
+    const url = `${base_url}/usuarios?limite=5&desde=${desde}`;
+
+    return this.http.get<usuariosObtenidos>(url,{headers:this.headers});
+  }
+
+  EliminarUsuario(id:string){
+    const url = `${base_url}/usuario/${id}`;
+
+    return this.http.delete(url,{headers:this.headers});
   }
 
 }
