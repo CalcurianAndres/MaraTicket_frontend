@@ -42,11 +42,13 @@
             <div class="field-body">
               <div class="field">
                 <p class="control">
-                  <input class="input" 
+                  <input class="input"
+                          [ngClass]="{'is-danger':campoNoValido('Titulo')}"
                           type="email" 
                           placeholder="Asunto"
                           formControlName="Titulo">
                 </p>
+                <p class="help is-danger" *ngIf="campoNoValido('Titulo')">Debe agregar un titulo</p>
               </div>
             </div>
         </div>
@@ -58,9 +60,11 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <textarea class="textarea" 
+                  <textarea class="textarea"
+                            [ngClass]="{'is-danger':campoNoValido('Descripcion')}" 
                             placeholder="Descripción del problema"
                             formControlName='Descripcion'></textarea>
+                            <p class="help is-danger" *ngIf="campoNoValido('Descripcion')">Debe agregar una descripción</p>
                 </div>
               </div>
             </div>
@@ -96,7 +100,8 @@
                 
               <div class="control">
                   
-                <button class="button is-primary is-end">
+                <button class="button is-primary is-end"
+                [ngClass]="{'is-loading':cargando}">
                   Generar ticket
                 </button>
               </div>

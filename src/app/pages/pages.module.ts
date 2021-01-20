@@ -51,7 +51,8 @@ import { NewUserComponent } from './new-user/new-user.component';
     AppRoutingModule,
     ComponentsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class PagesModule { }

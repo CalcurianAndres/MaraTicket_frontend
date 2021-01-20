@@ -1,7 +1,18 @@
+<div class="card anumate__animated animate__fadeIn mt-5">
+    <div class="card-content">
+
+    </div>
+</div>
+
 <div class="card animate__animated animate__fadeIn mt-5">
     <div class="card-content">
         <p class="title">Usuarios ({{total}})</p>
-        <table class="table is-fullwidth">
+        <div *ngIf="cargando">
+            Cargando...
+            <progress class="progress is-small is-primary" max="100">15%</progress>
+            Espere por favor.
+        </div>
+        <table class=" table is-narrow is-fullwidth table is-striped" *ngIf="!cargando">
             <thead>
                 <tr>
                     <th>Avatar</th>
@@ -15,20 +26,24 @@
             </thead>
             <tbody>
                 <tr *ngFor="let usuario of usuarios">
-                    <td>x</td>
+                    <td>
+                        <figure class="image is-32x32">
+                            <img class="is-rounded" [src]='usuario.profilePic()'>
+                        </figure>
+                    </td>
                     <td>{{usuario.Nombre}}</td>
                     <td>{{usuario.Apellido}}</td>
                     <td>{{usuario.Correo}}</td>
                     <td>{{usuario.AnyDesk}}</td>
-                    <td>{{usuario.Role}}</td>
                     <td>
-                        <div class="icon-text">
-                            <a>
-                                <span class="icon has-text-success">
-                                  <i class="fas fa-edit"></i>
-                                </span>
-                            </a>
-                             
+                        <select [(ngModel)]="usuario.Role"
+                                (change)="cambiarRole(usuario)">
+                            <option value="ADMIN_ROLE">Admin</option>
+                            <option value="USER_ROLE">Usuario</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="icon-text">                             
                             <a (click)='borrarUsuario(usuario._id)'>
                                 <span class="icon has-text-danger">
                                     <i class="fas fa-user-minus"></i>
@@ -38,10 +53,10 @@
                     </td>
                 </tr>
             </tbody>
+            <nav class="pagination is-small" role="navigation" aria-label="pagination">
+                <a class="pagination-previous" (click)="previous()">Anterior</a>
+                <a class="pagination-next" (click)="next()">Siguiente</a>
+            </nav>
         </table>
-        <nav class="pagination is-small" role="navigation" aria-label="pagination">
-            <a class="pagination-previous" (click)="previous()">Previous</a>
-            <a class="pagination-next" (click)="next()">Next page</a>
-        </nav>
     </div>
 </div>

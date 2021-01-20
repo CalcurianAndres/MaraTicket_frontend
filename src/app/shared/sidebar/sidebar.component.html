@@ -15,7 +15,7 @@
   <p class="menu-label mt-5">
     {{usuario.Nombre}} {{usuario.Apellido}}
   </p>
-  <div class="contenidos" *ngFor='let item of menuItems'>
+  <div class="contenidos" *ngFor='let item of sidebarService.menu'>
     <p class="menu-label">
       {{item.titulo}}
     </p>

@@ -10,10 +10,8 @@ import { SidebarService } from 'src/app/services/sidebar.service';
 })
 export class DashboardComponent{
 
-  menuItems:any[];
 
-  constructor(private sidebarService:SidebarService) {
-    this.menuItems = sidebarService.menu;
+  constructor(public sidebarService:SidebarService) {
   }
 
 }

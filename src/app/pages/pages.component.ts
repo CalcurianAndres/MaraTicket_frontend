@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SidebarService } from '../services/sidebar.service';
 
 
 @Component({
@@ -9,9 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public sidebarService:SidebarService) { }
 
   ngOnInit(): void {
+    this.sidebarService.cargarMenu();
   }
 
 }

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
 import { TicketService } from 'src/app/services/ticket.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevo',
@@ -13,6 +14,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class NuevoComponent {
 
   public usuario:Usuario;
+  public cargando = false;
+  public formSubmitted = false;
+
 
   public newTicketForm = this.fb.group({
     Titulo:['', Validators.required],
@@ -26,10 +30,33 @@ export class NuevoComponent {
   }
 
   NuevoTicket(){
+    this.formSubmitted = true;
+    this.cargando = true;
+
+    if(this.newTicketForm.invalid) {
+      this.cargando = false;
+      return;
+    }
+
     this.ticketService.crearTicket(this.newTicketForm.value)
-        .subscribe(resp => {
-          console.log(resp)
-        })
+    .subscribe( resp => {
+      this.cargando = false;
+        Swal.fire('Nuevo Ticket!', 'Nuevo ticket creado satisfactoriamente', 'success');
+        this.formSubmitted = false;
+        this.newTicketForm.reset();
+      }, (err)=> {
+        //si sucede un error
+        this.cargando = false;
+        Swal.fire('Error', err.error.err.errors.Correo.message, 'error');
+      } );
+  }
+
+  campoNoValido(campo:string):boolean{
+    if ( this.newTicketForm.get(campo)?.invalid && this.formSubmitted ){
+      return true;
+    }else{
+      return false;    
+    }
   }
 
 }

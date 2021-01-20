@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from "@angular/forms";
+
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
@@ -11,7 +13,9 @@ import Swal from 'sweetalert2';
 })
 export class UsersComponent implements OnInit {
 
-  public usuarios!:Usuario;
+  cargando:boolean = true;
+
+  public usuarios:Usuario[] = [];
   public total!:number;
   public desde:number = 0;
 
@@ -42,6 +46,11 @@ export class UsersComponent implements OnInit {
   }
 
   borrarUsuario(id:string){
+
+    if(this.usuarioService.usuario._id === id){
+      Swal.fire('Oops!', 'no puedes eliminar este usuario.', 'warning');
+      return
+    }
     Swal.fire({
       title: '¿Estas seguro?',
       text: "El usuario será eliminado",
@@ -63,11 +72,18 @@ export class UsersComponent implements OnInit {
   }
 
   obtenerUsuarios(desde:number){
+    this.cargando = true;
     this.usuarioService.ObtenerUsuarios(this.desde)
     .subscribe(({total, usuarios}) => {
       this.usuarios = usuarios;
       this.total = total;
+      this.cargando = false;
     })
+  }
+
+  cambiarRole(usuario:Usuario){
+    this.usuarioService.EditarUsuario(usuario)
+        .subscribe(resp => console.log(resp))
   }
 
 }
