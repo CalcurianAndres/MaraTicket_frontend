@@ -31,4 +31,10 @@ export class TicketService {
     return this.http.post(url, formData, {headers:this.headers});
   }
 
+  obtenerTickets(desde:number = 0){
+    const url = `${base_url}/tickets?desde=${desde}&limite=5`;
+
+    return this.http.get(url, {headers:this.headers})
+  }
+
 }

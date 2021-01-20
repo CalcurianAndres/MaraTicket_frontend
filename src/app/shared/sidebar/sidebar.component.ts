@@ -14,7 +14,7 @@ export class SidebarComponent {
 
   public usuario:Usuario;
 
-  constructor(private sidebarService:SidebarService,
+  constructor(public sidebarService:SidebarService,
               private usuarioService:UsuarioService) { 
     this.usuario = usuarioService.usuario;
   }
