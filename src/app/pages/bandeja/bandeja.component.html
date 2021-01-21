@@ -4,7 +4,7 @@
         <div class="columns">
             <div class="column">
                 <div class="tarj abiertos">
-                    <p class="title">35</p>
+                    <p class="title">{{total}}</p>
                     Total tickets
                 </div>
             </div>
@@ -37,52 +37,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>Andrés Calcurian</td>
-                        <td>12345679</td>
-                        <td>Esto es un asunto de prueba</td>
-                        <td><span class="tag is-success is-light">Abierto</span></td>
-                        <td>26/12/2020</td>
-                    </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>Andrés Calcurian</td>
-                        <td>12345679</td>
-                        <td>Esto es un asunto de prueba</td>
-                        <td><span class="tag is-info is-light">Ejecutandose</span></td>
-                        <td>26/12/2020</td>
-                    </tr>
-                    <tr>
-                        <td>03</td>
-                        <td>Andrés Calcurian</td>
-                        <td>12345679</td>
-                        <td>Esto es un asunto de prueba</td>
-                        <td><span class="tag is-success is-light">Abierto</span></td>
-                        <td>26/12/2020</td>
-                    </tr>
-                    <tr>
-                        <td>04</td>
-                        <td>Andrés Calcurian</td>
-                        <td>12345679</td>
-                        <td>Esto es un asunto de prueba</td>
-                        <td><span class="tag is-info is-light">Ejecutandose</span></td>
-                        <td>26/12/2020</td>
-                    </tr>
-                    <tr>
-                        <td>05</td>
-                        <td>Andrés Calcurian</td>
-                        <td>12345679</td>
-                        <td>Esto es un asunto de prueba</td>
-                        <td><span class="tag is-success is-light">Abierto</span></td>
-                        <td>26/12/2020</td>
+                    <tr *ngFor="let ticket of tickets; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{ticket.usuario[0].Nombre}} {{ticket.usuario[0].Apellido}}</td> 
+                        <td>{{ticket.usuario[0].AnyDesk}}</td>
+                        <td>{{ticket.titulo}}</td>
+                        <td><span class="tag is-success is-light">{{ticket.estado}}</span></td>
+                        <td>26/12/2020</td> 
                     </tr>
                 </tbody>
             </table>
         </div>
         <nav class="pagination is-small" role="navigation" aria-label="pagination">
-            <a class="pagination-previous">Previous</a>
-            <a class="pagination-next">Next page</a>
+            <a class="pagination-previous" (click)="previous()">Previous</a>
+            <a class="pagination-next" (click)="next()">Next page</a>
         </nav>
     </div>
 </div>

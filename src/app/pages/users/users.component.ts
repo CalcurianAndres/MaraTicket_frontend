@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   cargando:boolean = true;
 
   public usuarios:Usuario[] = [];
-  public total!:number;
+  public total:number = 0;
   public desde:number = 0;
 
   constructor(private usuarioService:UsuarioService) { }
