@@ -10,10 +10,14 @@ import { Ticket } from 'src/app/models/ticket.model';
   ]
 })
 export class BandejaComponent implements OnInit {
+  cargando:boolean = true;
 
   Bandeja:String = 'Bandeja';
   tickets!:Ticket[];
   total:number = 0;
+  abierto:number = 0;
+  ejecutandose:number = 0;
+  cerrado:number = 0;
   public desde:number = 0;
     
   constructor(private ticketService:TicketService) { }
@@ -23,12 +27,15 @@ export class BandejaComponent implements OnInit {
   }
 
   llenarBandeja(desde:number){
+    this.cargando = true;
     this.ticketService.obtenerTickets(desde)
-        .subscribe(({total, ticket}) => {
+        .subscribe(({total, ticket, abierto, ejecutandose, cerrado}) => {
           this.tickets = ticket;
           this.total = total;
+          this.abierto = abierto;
+          this.ejecutandose = ejecutandose;
 
-          console.log(this.tickets)
+          this.cargando = false;
         });
   }
 

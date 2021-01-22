@@ -10,21 +10,30 @@
             </div>
             <div class="column">
                 <div class="tarj pendientes">
-                    <p class="title">0</p>
+                    <p class="title">{{ejecutandose}}</p>
                     Ejecutandose</div>
             </div>
             <div class="column">
                 <div class="tarj Ejecutandose">
-                    <p class="title">5</p>
-                    abiertos</div>
+                    <p class="title">{{abierto}}</p>
+                    Abiertos</div>
             </div>
             <div class="column">
                 <div class="tarj Cerrados">
-                    <p class="title">30</p>
-                    cerrados</div>
+                    <p class="title">{{cerrado}}</p>
+                    Cerrados</div>
             </div>
         </div>
-        <div class="table-container">
+        <div class="level" *ngIf="cargando">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Cargando.</p>
+                    <p class="title"><i class="fas fa-circle-notch fa-pulse"></i></p>
+                    <p class="tittle">Por favor espere...</p>
+                </div>
+            </div>
+        </div>
+        <div class="table-container animate__animated animate__fadeIn" *ngIf="!cargando">
             <table class="table" width='100%'>
                 <thead>
                     <tr>
@@ -39,7 +48,18 @@
                 <tbody>
                     <tr *ngFor="let ticket of tickets; let i = index">
                         <td>{{i+1}}</td>
-                        <td>{{ticket.usuario[0].Nombre}} {{ticket.usuario[0].Apellido}}</td> 
+                        <td>
+                            <div class="columns">
+                                <div class="column is-2">
+                                    <figure class="image is-32x32">
+                                        <img class="is-rounded" [src]='ticket.perfilDueno()'>
+                                    </figure>
+                                </div>
+                                <div class="column">
+                                    {{ticket.usuario[0].Nombre}} {{ticket.usuario[0].Apellido}}
+                                </div>
+                            </div>
+                        </td> 
                         <td>{{ticket.usuario[0].AnyDesk}}</td>
                         <td>{{ticket.titulo}}</td>
                         <td><span class="tag is-success is-light">{{ticket.estado}}</span></td>
@@ -48,9 +68,9 @@
                 </tbody>
             </table>
         </div>
-        <nav class="pagination is-small" role="navigation" aria-label="pagination">
-            <a class="pagination-previous" (click)="previous()">Previous</a>
-            <a class="pagination-next" (click)="next()">Next page</a>
-        </nav>
+    <nav class="pagination is-small" role="navigation" aria-label="pagination" *ngIf="!cargando">
+        <a class="pagination-previous" (click)="previous()">Previous</a>
+        <a class="pagination-next" (click)="next()">Next page</a>
+    </nav>
     </div>
 </div>

@@ -7,12 +7,16 @@
 <div class="card animate__animated animate__fadeIn mt-5">
     <div class="card-content">
         <p class="title">Usuarios ({{total}})</p>
-        <div *ngIf="cargando">
-            Cargando...
-            <progress class="progress is-small is-primary" max="100">15%</progress>
-            Espere por favor.
-        </div>
-        <table class=" table is-narrow is-fullwidth table is-striped" *ngIf="!cargando">
+        <div class="level" *ngIf="cargando">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Cargando...</p>
+                    <p class="title"><i class="fas fa-circle-notch fa-pulse"></i></p>
+                    <p class="tittle">Por favor espere.</p>
+                </div>
+            </div>
+        </div>  
+        <table class=" table is-narrow is-fullwidth table is-striped animate__animated animate__fadeIn" *ngIf="!cargando">
             <thead>
                 <tr>
                     <th>Avatar</th>
@@ -53,10 +57,10 @@
                     </td>
                 </tr>
             </tbody>
-            <nav class="pagination is-small" role="navigation" aria-label="pagination">
-                <a class="pagination-previous" (click)="previous()">Anterior</a>
-                <a class="pagination-next" (click)="next()">Siguiente</a>
-            </nav>
         </table>
+        <nav class="pagination is-small" role="navigation" aria-label="pagination" *ngIf="!cargando">
+            <a class="pagination-previous" (click)="previous()">Anterior</a>
+            <a class="pagination-next" (click)="next()">Siguiente</a>
+        </nav>
     </div>
 </div>

@@ -48,6 +48,9 @@ export class TicketService {
           );
           return {
             total:resp.total,
+            abierto:resp.abierto,
+            ejecutandose:resp.ejecutandose,
+            cerrado:resp.cerrado,
             ticket
           };
         }
