@@ -61,7 +61,9 @@
                             </div>
                         </td> 
                         <td>{{ticket.usuario[0].AnyDesk}}</td>
-                        <td>{{ticket.titulo}}</td>
+                        <td>
+                            <a href="dashboard/ticket/{{ticket._id}}">{{ticket.titulo}}</a>
+                        </td>
                         <td><span class="tag is-success is-light">{{ticket.estado}}</span></td>
                         <td>26/12/2020</td> 
                     </tr>

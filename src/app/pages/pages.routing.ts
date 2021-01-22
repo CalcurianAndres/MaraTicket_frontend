@@ -13,6 +13,7 @@ import { NuevoComponent } from './nuevo/nuevo.component';
 import { GraficasComponent } from './graficas/graficas.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
       { path: 'nuevo', component: NuevoComponent, data:{titulo:'Nuevo ticket'}},
       { path: 'estadisticas', component: GraficasComponent, data:{titulo:'Estadisticas'}},
       { path: 'usuarios', component: UsersComponent , data:{titulo:'Usuarios'}},
-      { path: 'nuevo-usuario', component: NewUserComponent , data:{titulo:'Nuevo usuarios'}}
+      { path: 'nuevo-usuario', component: NewUserComponent , data:{titulo:'Nuevo usuarios'}},
+      { path: 'ticket/:id', component: TicketComponent , data:{titulo:'ticket'}}
     ]},
 ];
 

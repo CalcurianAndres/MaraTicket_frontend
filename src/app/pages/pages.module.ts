@@ -18,6 +18,7 @@ import { NuevoComponent } from './nuevo/nuevo.component';
 import { GraficasComponent } from './graficas/graficas.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 
 
@@ -33,6 +34,7 @@ import { NewUserComponent } from './new-user/new-user.component';
     GraficasComponent,
     ChangePasswordComponent,
     NewUserComponent,
+    TicketComponent
   ],
   exports: [
     PagesComponent,

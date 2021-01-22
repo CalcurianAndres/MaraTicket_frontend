@@ -7,6 +7,7 @@ import { NewTicketForm } from '../interfaces/ticket-form.interface';
 import { map } from 'rxjs/operators';
 import { Ticket } from '../models/ticket.model';
 import { ticketsObtenidos } from '../interfaces/tickets.interface';
+import { ticketObtenidos } from '../interfaces/ticket.interface';
 
 
 const base_url = environment.base_url
@@ -55,6 +56,21 @@ export class TicketService {
           };
         }
         )
+      )
+  }
+
+  obtenerUnTicket(id:string){
+    const url = `${base_url}/ticket${id}`;
+
+    return this.http.get<ticketObtenidos>(url, {headers:this.headers})
+      .pipe(
+        map(resp => {
+          const ticket:Ticket = resp.ticket;
+          return {
+            ok:true,
+            ticket
+          }
+        })
       )
   }
 

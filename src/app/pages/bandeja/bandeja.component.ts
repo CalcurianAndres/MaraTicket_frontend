@@ -12,12 +12,12 @@ import { Ticket } from 'src/app/models/ticket.model';
 export class BandejaComponent implements OnInit {
   cargando:boolean = true;
 
-  Bandeja:String = 'Bandeja';
-  tickets!:Ticket[];
-  total:number = 0;
-  abierto:number = 0;
-  ejecutandose:number = 0;
-  cerrado:number = 0;
+  public Bandeja:String = 'Bandeja';
+  public tickets!:Ticket[];
+  public total:number = 0;
+  public abierto:number = 0;
+  public ejecutandose:number = 0;
+  public cerrado:number = 0;
   public desde:number = 0;
     
   constructor(private ticketService:TicketService) { }
@@ -34,7 +34,7 @@ export class BandejaComponent implements OnInit {
           this.total = total;
           this.abierto = abierto;
           this.ejecutandose = ejecutandose;
-
+          this.cerrado = cerrado;
           this.cargando = false;
         });
   }
