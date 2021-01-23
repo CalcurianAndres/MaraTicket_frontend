@@ -6,8 +6,7 @@ import { environment } from 'src/environments/environment';
 import { NewTicketForm } from '../interfaces/ticket-form.interface';
 import { map } from 'rxjs/operators';
 import { Ticket } from '../models/ticket.model';
-import { ticketsObtenidos } from '../interfaces/tickets.interface';
-import { ticketObtenidos } from '../interfaces/ticket.interface';
+import { ticketsObtenidos, ticketObtenidos } from '../interfaces/tickets.interface';
 
 
 const base_url = environment.base_url
@@ -17,8 +16,6 @@ const base_url = environment.base_url
   providedIn: 'root'
 })
 export class TicketService {
-  
-  public ticket!:Ticket
  
   constructor(private http:HttpClient,
               private router:Router) { }
@@ -59,17 +56,17 @@ export class TicketService {
       )
   }
 
-  obtenerUnTicket(id:string){
-    const url = `${base_url}/ticket${id}`;
+  obtenerUnTicket(id:any){
+    const url = `${base_url}/ticket/${id}`;
 
     return this.http.get<ticketObtenidos>(url, {headers:this.headers})
       .pipe(
         map(resp => {
-          const ticket:Ticket = resp.ticket;
-          return {
-            ok:true,
-            ticket
-          }
+          const ticket = resp.ticket
+
+          const instanc = new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario)
+
+          return instanc;
         })
       )
   }

@@ -46,6 +46,7 @@ import { TicketComponent } from './ticket/ticket.component';
     NuevoComponent,
     GraficasComponent,
     ChangePasswordComponent,
+    TicketComponent
   ],
   imports: [
     CommonModule,

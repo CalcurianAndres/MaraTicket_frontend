@@ -1,20 +1,25 @@
-<div class="columns animate__animated animate__fadeIn mt-5">
+<div class="level" *ngIf="cargando">
+  <div class="level-item has-text-centered">
+      <div>
+          <p class="heading">Cargando...</p>
+          <p class="title"><i class="fas fa-circle-notch fa-pulse"></i></p>
+          <p class="tittle">Por favor espere.</p>
+      </div>
+  </div>
+</div>
+<div class="columns animate__animated animate__fadeIn mt-5" *ngIf="!cargando">
     <div class="column is-two-thirds">
         <article class="media">
             <figure class="media-left">
                 <p class="image is-64x64">
-                    <img src="../../../assets/images/profile.jpg" alt="Profile Pic">
+                    <img [src]='ticket.perfilDueno()' alt="Profile Pic">
                 </p>
-            </figure>
+            </figure> 
             <div class="media-content">
                 <div class="content">
                     <p>
-                        <strong>Asunto</strong><br>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                        officia deserunt mollit anim id est laborum."<br>
+                        <strong>{{ticket.titulo}}</strong><br>
+                        {{ticket.descripcion}}<br>
                         <small>13/01/2021 - 12:49</small>
                     </p>
                 </div>
@@ -67,7 +72,7 @@
         <article class="media">
             <figure class="media-left">
               <p class="image is-64x64">
-                <img src="../../../assets/images/profile.jpg">
+                <img [src]="usuario.profilePic()">
               </p>
             </figure>
             <div class="media-content">
@@ -87,9 +92,8 @@
     <div class="column">
         <article class="message">
             <div class="message-body">
-                <strong>Ticket Id: </strong>123456 <br>
-                <strong>Abierto por: </strong>Andrés Calcurian <br>
-                <strong>AnyDesk: </strong>123654789 <br>
+                <strong>Abierto por: </strong>{{ticket.usuario[0].Nombre}} {{ticket.usuario[0].Apellido}} <br>
+                <strong>AnyDesk: </strong> {{ticket.usuario[0].AnyDesk}} <br>
                 <hr>
                 <strong>Status: </strong> 
                 <div class="dropdown is-hoverable">

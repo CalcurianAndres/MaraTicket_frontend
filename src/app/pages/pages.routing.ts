@@ -26,10 +26,10 @@ const routes: Routes = [
       { path: 'cambiar-password', component:ChangePasswordComponent , data:{titulo:'Cambiar contraseña'}},
       { path: 'bandeja', component: BandejaComponent, data:{titulo:'Bandeja'}},
       { path: 'nuevo', component: NuevoComponent, data:{titulo:'Nuevo ticket'}},
-      { path: 'estadisticas', component: GraficasComponent, data:{titulo:'Estadisticas'}},
+      { path: 'estadisticas', component: GraficasComponent, data:{titulo:'Estadísticas'}},
       { path: 'usuarios', component: UsersComponent , data:{titulo:'Usuarios'}},
       { path: 'nuevo-usuario', component: NewUserComponent , data:{titulo:'Nuevo usuarios'}},
-      { path: 'ticket/:id', component: TicketComponent , data:{titulo:'ticket'}}
+      { path: 'ticket/:id', component: TicketComponent , data:{titulo:'Ticket'}}
     ]},
 ];
 
