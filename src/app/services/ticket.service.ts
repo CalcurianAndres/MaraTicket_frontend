@@ -42,7 +42,7 @@ export class TicketService {
       .pipe(
         map(resp =>{
           const ticket = resp.ticket.map(
-              ticket => new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario)
+              ticket => new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario, ticket.comentarios, ticket.fecha)
           );
           return {
             total:resp.total,
@@ -64,7 +64,7 @@ export class TicketService {
         map(resp => {
           const ticket = resp.ticket
 
-          const instanc = new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario)
+          const instanc = new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario, ticket.comentarios, ticket.fecha)
 
           return instanc;
         })

@@ -1,5 +1,6 @@
 import { Usuario } from './usuario.model';
 import { environment } from 'src/environments/environment';
+import { Comentario } from './comentario.model';
 
 const base_url = environment.base_url;
 
@@ -9,7 +10,9 @@ export class Ticket {
         public descripcion:string,
         public estado:string,
         public titulo:string,
-        public usuario:Usuario[]
+        public usuario:Usuario[],
+        public comentarios:any,
+        public fecha:Date,
     ){}
 
     perfilDueno(){

@@ -33,7 +33,16 @@
                 </div>
             </div>
         </div>
-        <div class="table-container animate__animated animate__fadeIn" *ngIf="!cargando">
+        <div class="level" *ngIf="!cargando && tickets.length == 0">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">bandeja vacia.</p>
+                    <p class="title"><i class="fas fa-folder-open"></i></p>
+                    <p class="tittle">No hay tickets por gertionar!.</p>
+                </div>
+            </div>
+        </div>
+        <div class="table-container animate__animated animate__fadeIn" *ngIf="!cargando && tickets.length > 0">
             <table class="table" width='100%'>
                 <thead>
                     <tr>
@@ -42,6 +51,7 @@
                         <th>AnyDesk</th>
                         <th>Asunto</th>
                         <th>Status</th>
+                        <th>Tomado por:</th>
                         <th>Fecha</th>
                     </tr>
                 </thead>
@@ -65,14 +75,15 @@
                             <a routerLink="/dashboard/ticket/{{ticket._id}}">{{ticket.titulo}}</a>
                         </td>
                         <td><span class="tag is-success is-light">{{ticket.estado}}</span></td>
-                        <td>26/12/2020</td> 
+                        <td>Andrés Calcurian</td>
+                        <td>{{ticket.fecha | date:'dd/MM/yyyy'}}</td> 
                     </tr>
                 </tbody>
             </table>
         </div>
-    <nav class="pagination is-small" role="navigation" aria-label="pagination" *ngIf="!cargando">
-        <a class="pagination-previous" (click)="previous()">Previous</a>
-        <a class="pagination-next" (click)="next()">Next page</a>
+    <nav class="pagination is-small" role="navigation" aria-label="pagination" *ngIf="!cargando && tickets.length > 0">
+        <a class="pagination-previous" (click)="previous()">Anterior</a>
+        <a class="pagination-next" (click)="next()">Siguiente</a>
     </nav>
     </div>
 </div>
