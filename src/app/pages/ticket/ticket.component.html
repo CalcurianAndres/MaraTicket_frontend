@@ -29,9 +29,9 @@
                 <article class="media" *ngFor='let mensaje of comentario.comentarios'>
                   <figure class="media-left">
                     <p class="image is-48x48">
-                        <img src="http://localhost:3000/api/imagen/usuarios/{{mensaje.usuario.img}}" 
+                        <img src="http://localhost:8080/api/imagen/usuarios/{{mensaje.usuario.img}}" 
                         alt="Profile Pic" *ngIf="mensaje.usuario.img">
-                        <img src="http://localhost:3000/api/imagen/usuarios/no-image" 
+                        <img src="http://localhost:8080/api/imagen/usuarios/no-image" 
                         alt="Profile Pic" *ngIf="!mensaje.usuario.img">
                     </p>
                   </figure>
