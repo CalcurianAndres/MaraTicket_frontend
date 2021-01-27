@@ -21,7 +21,6 @@ export class TicketComponent implements OnInit {
   public enviando:boolean = false;
   public modal:boolean = false;
   public id!:any;
-  public myId!:any;
 
   
   public newComment = this.fb.group({
@@ -36,7 +35,6 @@ export class TicketComponent implements OnInit {
     private comentarioService:ComentariosService,) { 
       this.usuario = this.usuarioService.usuario;
       this.id = this.route.snapshot.paramMap.get('id');
-      this.myId = this.usuarioService.usuario._id;
     }
     
 
@@ -56,7 +54,7 @@ export class TicketComponent implements OnInit {
 
   comentar(){
     this.enviando = true;
-    this.newComment.get('dueno')?.setValue(this.myId)
+    this.newComment.get('dueno')?.setValue(this.usuario._id)
 
     if(this.newComment.invalid) {
       this.enviando = false;
@@ -74,9 +72,15 @@ export class TicketComponent implements OnInit {
 
   }
 
-  CambiarTicket(){
-    this.modal = true;
-    console.log('wtf?')
+  Modal(){
+    if(!this.modal){
+      this.modal = true;
+    }else{
+      this.modal = false;
+    }
   }
 
+  cambiarTicket(){
+    console.log('se intenta cambiar el ticket')
+  }
 }

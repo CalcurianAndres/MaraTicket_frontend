@@ -77,43 +77,48 @@
         </div>
     <div class="column">
       <article class="message">
-            <div class="message-body">
+        <div class="message-body">
+              <form
+              autocomplete="off"
+              [formGroup]="CambiosForm"
+              (ngSubmit)="cambiarTicket()">
                 <strong>Abierto por: </strong>{{ticket.usuario[0].Nombre}} {{ticket.usuario[0].Apellido}} <br>
                 <strong>AnyDesk: </strong> {{ticket.usuario[0].AnyDesk}} <br>
                 <strong>Para: </strong> 
-                <select>
-                  <option value="">Sop. Técnico</option>
-                  <option value="">Profit</option>
+                <select formControlName="departamento">
+                  <option value="Soporte">Sop. Técnico</option>
+                  <option value="Profit">Profit</option>
+                  <option value="SevGenerales">Serv. Generales</option>
                 </select> <br>
-                <strong>de:</strong> 
                 <hr>
                 <strong>Status: </strong> 
-                <select>
+                <select formControlName="estado" [(ngModel)]="ticket.usuario[0].estado">
                   <option value="ABIERTO">Abierto</option>
                   <option value="EJECUTANDOSE">En ejecución</option>
                   <option value="CERRADO">Cerrado</option>
                 </select>
                 <br>
                 <!-- COMIENZO DEL MODAL -->
-                <div class="modal" [ngClass]="{'is-active':modal}">
-                  <div class="modal-background"></div>
+                  <div class="modal" [ngClass]="{'is-active':modal}">
+                    <div class="modal-background"></div>
                   <div class="modal-card">
                     <header class="modal-card-head">
                       <p class="modal-card-title">Modificar ticket</p>
                     </header>
-                    <section class="modal-card-body">
+                    <section class="modal-card-body has-text-centered">
                       <p class="title">Deja un comentario para continuar</p>
-                      <textarea class="textarea" placeholder="Agregar un commentario..."></textarea>
+                      <textarea class="textarea" placeholder="Agregar un commentario..." formControlName="mensaje"></textarea>
                     </section>
                     <footer class="modal-card-foot">
-                      <button class="button is-success">Save changes</button>
-                      <button class="button">Cancel</button>
+                      <button class="button" (click)="Modal()">Cancelar</button>
+                      <button class="button is-primary">Guardar Cambios</button>
                     </footer>
                   </div>
-                </div>
+                  </div>
                 <!-- FINAL DEL MODAL -->
-                <a (click)="CambiarTicket()" class="button mt-5 is-fullwidth is-primary">Actualizar Ticket</a>
-              </div>
-            </article>
-          </div>
+                <a (click)="Modal()" class="button mt-5 is-fullwidth is-primary">Actualizar Ticket</a>
+              </form>
+        </div>
+      </article>
+    </div>
 </div>
