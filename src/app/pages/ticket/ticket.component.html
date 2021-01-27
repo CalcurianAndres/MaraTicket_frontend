@@ -8,12 +8,12 @@
   </div>
 </div>
 <div class="columns animate__animated animate__fadeIn mt-5" *ngIf="!cargando">
-    <div class="column is-two-thirds">
+  <div class="column is-two-thirds">
         <article class="media">
             <figure class="media-left">
-                <p class="image is-64x64">
+              <p class="image is-64x64">
                     <img [src]='ticket.perfilDueno()' alt="Profile Pic">
-                </p>
+                  </p>
             </figure> 
             <div class="media-content">
                 <div class="content">
@@ -24,16 +24,16 @@
                         <small>{{ticket.fecha | date:'dd/MM/yyyy - h:mm a'}}</small>
                     </p>
                 </div>
-              
+                
               <div *ngFor="let comentario of ticket.comentarios">
                 <article class="media" *ngFor='let mensaje of comentario.comentarios'>
                   <figure class="media-left">
                     <p class="image is-48x48">
-                        <img src="http://localhost:8080/api/imagen/usuarios/{{mensaje.usuario.img}}" 
+                      <img src="http://localhost:8080/api/imagen/usuarios/{{mensaje.usuario.img}}" 
                         alt="Profile Pic" *ngIf="mensaje.usuario.img">
                         <img src="http://localhost:8080/api/imagen/usuarios/no-image" 
                         alt="Profile Pic" *ngIf="!mensaje.usuario.img">
-                    </p>
+                      </p>
                   </figure>
                   <div class="media-content">
                     <div class="content">
@@ -49,16 +49,16 @@
         </div>
       </article><br>
       <form
-        autocomplete="off"
-        [formGroup]="newComment"
-        (ngSubmit)="comentar()">
+      autocomplete="off"
+      [formGroup]="newComment"
+      (ngSubmit)="comentar()">
         <article class="media">
             <figure class="media-left">
               <p class="image is-64x64">
                 <img [src]="usuario.profilePic()">
               </p>
             </figure>
-              <div class="media-content">
+            <div class="media-content">
                 <div class="field">
                   <p class="control">
                     <textarea class="textarea" placeholder="Agregar un commentario..." formControlName='mensaje'></textarea>
@@ -74,9 +74,9 @@
               </div>
             </article>
           </form>
-    </div>
+        </div>
     <div class="column">
-        <article class="message">
+      <article class="message">
             <div class="message-body">
                 <strong>Abierto por: </strong>{{ticket.usuario[0].Nombre}} {{ticket.usuario[0].Apellido}} <br>
                 <strong>AnyDesk: </strong> {{ticket.usuario[0].AnyDesk}} <br>
@@ -94,8 +94,26 @@
                   <option value="CERRADO">Cerrado</option>
                 </select>
                 <br>
-                <a href="" class="button mt-5 is-fullwidth is-primary">Actualizar Ticket</a>
-            </div>
-        </article>
-    </div>
+                <!-- COMIENZO DEL MODAL -->
+                <div class="modal" [ngClass]="{'is-active':modal}">
+                  <div class="modal-background"></div>
+                  <div class="modal-card">
+                    <header class="modal-card-head">
+                      <p class="modal-card-title">Modificar ticket</p>
+                    </header>
+                    <section class="modal-card-body">
+                      <p class="title">Deja un comentario para continuar</p>
+                      <textarea class="textarea" placeholder="Agregar un commentario..."></textarea>
+                    </section>
+                    <footer class="modal-card-foot">
+                      <button class="button is-success">Save changes</button>
+                      <button class="button">Cancel</button>
+                    </footer>
+                  </div>
+                </div>
+                <!-- FINAL DEL MODAL -->
+                <a (click)="CambiarTicket()" class="button mt-5 is-fullwidth is-primary">Actualizar Ticket</a>
+              </div>
+            </article>
+          </div>
 </div>

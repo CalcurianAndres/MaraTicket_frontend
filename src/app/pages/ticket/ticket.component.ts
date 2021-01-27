@@ -6,6 +6,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ComentariosService } from 'src/app/services/comentarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ticket',
@@ -18,6 +19,7 @@ export class TicketComponent implements OnInit {
   public usuario!:Usuario;
   public cargando:boolean = true;
   public enviando:boolean = false;
+  public modal:boolean = false;
   public id!:any;
   public myId!:any;
 
@@ -49,7 +51,6 @@ export class TicketComponent implements OnInit {
         .subscribe(ticket => {
           this.ticket = ticket;
           this.cargando = false;
-          // console.log(this.ticket)
         })
   }
 
@@ -71,6 +72,11 @@ export class TicketComponent implements OnInit {
         })
         
 
+  }
+
+  CambiarTicket(){
+    this.modal = true;
+    console.log('wtf?')
   }
 
 }

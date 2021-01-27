@@ -74,7 +74,9 @@
                         <td>
                             <a routerLink="/dashboard/ticket/{{ticket._id}}">{{ticket.titulo}}</a>
                         </td>
-                        <td><span class="tag is-success is-light">{{ticket.estado}}</span></td>
+                        <td><span class="tag is-success is-light" *ngIf="ticket.estado == 'ABIERTO'">{{ticket.estado}}</span>
+                            <span class="tag is-warning is-light" *ngIf="ticket.estado == 'EJECUTANDOSE'">{{ticket.estado}}</span>
+                            <!-- <span class="tag is-success is-light">{{ticket.estado}}</span></td> -->
                         <td>Andrés Calcurian</td>
                         <td>{{ticket.fecha | date:'dd/MM/yyyy'}}</td> 
                     </tr>
