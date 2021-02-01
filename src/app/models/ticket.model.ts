@@ -1,6 +1,7 @@
 import { Usuario } from './usuario.model';
 import { environment } from 'src/environments/environment';
 import { Comentario } from './comentario.model';
+import { Notificacion } from './notificacion.model';
 
 const base_url = environment.base_url;
 
@@ -11,7 +12,8 @@ export class Ticket {
         public estado:string,
         public titulo:string,
         public usuario:Usuario[],
-        public comentarios:any,
+        public comentarios:Comentario[],
+        public notificaciones:Notificacion[],
         public fecha:Date,
     ){}
 

@@ -51,7 +51,6 @@
                         <th>AnyDesk</th>
                         <th>Asunto</th>
                         <th>Status</th>
-                        <th>Tomado por:</th>
                         <th>Fecha</th>
                     </tr>
                 </thead>
@@ -77,7 +76,6 @@
                         <td><span class="tag is-success is-light" *ngIf="ticket.estado == 'ABIERTO'">{{ticket.estado}}</span>
                             <span class="tag is-warning is-light" *ngIf="ticket.estado == 'EJECUTANDOSE'">{{ticket.estado}}</span>
                             <!-- <span class="tag is-success is-light">{{ticket.estado}}</span></td> -->
-                        <td>Andrés Calcurian</td>
                         <td>{{ticket.fecha | date:'dd/MM/yyyy'}}</td> 
                     </tr>
                 </tbody>

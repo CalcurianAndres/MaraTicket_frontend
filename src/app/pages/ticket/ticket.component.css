@@ -1,3 +1,6 @@
 .message {
     position: fixed;
 }
+.dropdown{
+    margin-top: -65px;
+}

@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { environment } from 'src/environments/environment';
 
 import { NewTicketForm } from '../interfaces/ticket-form.interface';
-import { map } from 'rxjs/operators';
-import { Ticket } from '../models/ticket.model';
 import { ticketsObtenidos, ticketObtenidos } from '../interfaces/tickets.interface';
+import { notificacionForm } from '../interfaces/notificacion-form';
+
+import { map } from 'rxjs/operators';
+
+import { Ticket } from '../models/ticket.model';
 
 
 const base_url = environment.base_url
@@ -16,7 +20,9 @@ const base_url = environment.base_url
   providedIn: 'root'
 })
 export class TicketService {
- 
+
+  public ticket!:Ticket
+  
   constructor(private http:HttpClient,
               private router:Router) { }
 
@@ -42,7 +48,7 @@ export class TicketService {
       .pipe(
         map(resp =>{
           const ticket = resp.ticket.map(
-              ticket => new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario, ticket.comentarios, ticket.fecha)
+              ticket => new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario, ticket.comentarios, ticket.notificaciones, ticket.fecha)
           );
           return {
             total:resp.total,
@@ -64,11 +70,17 @@ export class TicketService {
         map(resp => {
           const ticket = resp.ticket
 
-          const instanc = new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario, ticket.comentarios, ticket.fecha)
+          this.ticket = new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario, ticket.comentarios, ticket.notificaciones, ticket.fecha)
 
-          return instanc;
+          return this.ticket;
         })
       )
+  }
+
+  ModificarTicket(id:any, data:notificacionForm){
+    const url = `${base_url}/ticket/${id}`;
+
+    return this.http.put(url, data, {headers:this.headers});
   }
 
 }

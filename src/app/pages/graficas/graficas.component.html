@@ -1,6 +1,15 @@
-<div class="columns">
+<div class="level" *ngIf="cargando">
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Cargando.</p>
+            <p class="title"><i class="fas fa-circle-notch fa-pulse"></i></p>
+            <p class="tittle">Por favor espere...</p>
+        </div>
+    </div>
+</div>
+<div class="columns" *ngIf="!cargando">
     <div class="column">
-        <app-dona title="General"
+        <app-dona title="General - Total tickets({{data.Total}})"
                   [labels]='LabelsGeneral'
                   [data]='DataGeneral'
                   >

@@ -35,11 +35,16 @@
               </span>
             </p>
           </div>
-          <label class="checkbox">
-            <input type="checkbox"
-                    formControlName='remember'>
-            Recuerdame
-          </label>
+          <div class="field">
+  <input class="is-checkradio has-background-color is-success" 
+  id="exampleCheckboxBackgroundColorSuccess" 
+  type="checkbox" 
+  name="exampleCheckboxBackgroundColorSuccess" 
+  checked="checked"
+  formControlName='remember'>
+  <label for="exampleCheckboxBackgroundColorSuccess">Recuerdame</label>
+</div>
+
           <hr>
           <button class="button is-fullwidth is-primary"
                   [ngClass]="{'is-loading':cargando}"

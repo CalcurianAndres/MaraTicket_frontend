@@ -6,7 +6,6 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ComentariosService } from 'src/app/services/comentarios.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ticket',
@@ -19,15 +18,17 @@ export class TicketComponent implements OnInit {
   public usuario!:Usuario;
   public cargando:boolean = true;
   public enviando:boolean = false;
+  public notificacion:boolean = false;
   public modal:boolean = false;
   public id!:any;
+  public lleno:boolean = false;
 
   
   public newComment = this.fb.group({
     dueno:[''],
     mensaje:['', Validators.required]
   });
-  
+
   constructor(private route:ActivatedRoute,
     private fb:FormBuilder,
     private usuarioService:UsuarioService,
@@ -80,7 +81,34 @@ export class TicketComponent implements OnInit {
     }
   }
 
-  cambiarTicket(){
-    console.log('se intenta cambiar el ticket')
+  cambiarTicket(ticket:Ticket, mensaje:any){
+    const data = {
+      estado:ticket.estado,
+      usuario:this.usuario._id,
+      mensaje:mensaje.value
+    }
+    this.cargando = true;
+    this.ticketService.ModificarTicket(this.id, data)
+      .subscribe(resp=>{
+        this.modal = false;
+        this.getTicket();
+      })
   }
+
+  verificarText(mensaje:any){
+    if(mensaje.value === ''){
+      this.lleno = false
+    }else{
+      this.lleno = true;
+    }
+  }
+
+  MostrarNotificacion(){
+    if(!this.notificacion){
+      this.notificacion = true;
+    }else{
+      this.notificacion = false;
+    }
+  }
+
 }
