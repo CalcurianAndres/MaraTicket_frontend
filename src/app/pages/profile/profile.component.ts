@@ -18,6 +18,7 @@ export class ProfileComponent{
   constructor(private usuarioService:UsuarioService,
               private fileUploadsService:FileUploadsService) {
     this.usuario = usuarioService.usuario;
+    console.log(this.usuario)
   }
 
   CambiarImagen( event:any ){

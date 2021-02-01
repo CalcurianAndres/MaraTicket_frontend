@@ -25,6 +25,7 @@
                     <th>Correo</th>
                     <th>AnyDesk</th>
                     <th>Role</th>
+                    <th>Departamento</th>
                     <th>Accion</th>
                 </tr>
             </thead>
@@ -44,6 +45,13 @@
                                 (change)="cambiarRole(usuario)">
                             <option value="ADMIN_ROLE">Admin</option>
                             <option value="USER_ROLE">Usuario</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select [(ngModel)]="usuario.Departamento"
+                        (change)="cambiarRole(usuario)">
+                        <option value="soporte">Soporte</option>
+                        <option value="profit">Profit</option>
                         </select>
                     </td>
                     <td>

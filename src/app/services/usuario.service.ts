@@ -50,9 +50,9 @@ export class UsuarioService {
     }).pipe(
       tap( (resp:any) =>{
 
-        const {estado,_id ,Nombre ,Apellido, Correo ,Role,AnyDesk, img} = resp.usuario;
+        const {estado,_id ,Nombre ,Apellido, Correo ,Departamento, Role,AnyDesk, img} = resp.usuario;
 
-        this.usuario = new Usuario(estado, _id, Nombre, Apellido, Correo, Role, AnyDesk, img);
+        this.usuario = new Usuario(estado, _id, Nombre, Apellido, Correo, Departamento,Role, AnyDesk, img);
         localStorage.setItem('token', resp.token);
         localStorage.setItem('menu', JSON.stringify( resp.menu) );
       }),
@@ -73,9 +73,9 @@ export class UsuarioService {
     .pipe(
       tap( (resp:any) =>{
 
-        const {estado,_id ,Nombre ,Apellido, Correo ,Role,AnyDesk, img} = resp.usuario;
+        const {estado,_id ,Nombre ,Apellido, Correo , Departamento, Role,AnyDesk, img} = resp.usuario;
 
-        this.usuario = new Usuario(estado, _id, Nombre, Apellido, Correo, Role, AnyDesk, img);
+        this.usuario = new Usuario(estado, _id, Nombre, Apellido, Correo, Departamento, Role, AnyDesk, img);
         localStorage.setItem('token', resp.token);
         localStorage.setItem('menu', JSON.stringify( resp.menu) );
       })
@@ -90,7 +90,7 @@ export class UsuarioService {
             map( resp =>{
               
               const usuarios = resp.usuarios.map(
-                user => new Usuario(user.estado, user._id, user.Nombre, user.Apellido, user.Correo, user.Role, user.AnyDesk, user.img)
+                user => new Usuario(user.estado, user._id, user.Nombre, user.Apellido, user.Correo, user.Departamento, user.Role, user.AnyDesk, user.img)
                 
                 );
               return {
@@ -111,7 +111,8 @@ export class UsuarioService {
   EditarUsuario(data:Usuario){
     const url = `${base_url}/usuario/${data._id}`;
     const dato = {
-      Role:data.Role
+      Role:data.Role,
+      Departamento:data.Departamento
     }
     
     return this.http.put(url, dato, {

@@ -84,6 +84,7 @@ export class TicketComponent implements OnInit {
   cambiarTicket(ticket:Ticket, mensaje:any){
     const data = {
       estado:ticket.estado,
+      departamento:ticket.departamento,
       usuario:this.usuario._id,
       mensaje:mensaje.value
     }
@@ -110,5 +111,4 @@ export class TicketComponent implements OnInit {
       this.notificacion = false;
     }
   }
-
 }

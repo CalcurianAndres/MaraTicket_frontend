@@ -19,6 +19,7 @@ export class NuevoComponent {
 
 
   public newTicketForm = this.fb.group({
+    Departamento:['soporte',Validators.required],
     Titulo:['', Validators.required],
     Descripcion:['', Validators.required],
   });
@@ -44,6 +45,7 @@ export class NuevoComponent {
         Swal.fire('Nuevo Ticket!', 'Nuevo ticket creado satisfactoriamente', 'success');
         this.formSubmitted = false;
         this.newTicketForm.reset();
+        this.newTicketForm.get('Departamento')?.setValue('soporte')
       }, (err)=> {
         //si sucede un error
         this.cargando = false;

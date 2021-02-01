@@ -9,6 +9,7 @@ export class Usuario {
         public Nombre: string, 
         public Apellido: string, 
         public Correo: string,
+        public Departamento:string,
         public Role?: string,
         public AnyDesk?: string,
         public img?:string

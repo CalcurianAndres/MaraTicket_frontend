@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from 'src/app/services/ticket.service';
 import { Ticket } from 'src/app/models/ticket.model';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Usuario } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-bandeja',
@@ -13,6 +15,7 @@ export class BandejaComponent implements OnInit {
   cargando:boolean = true;
 
   public Bandeja:String = 'Bandeja';
+  public usuario!:Usuario;
   public tickets!:Ticket[];
   public total:number = 0;
   public abierto:number = 0;
@@ -20,15 +23,18 @@ export class BandejaComponent implements OnInit {
   public cerrado:number = 0;
   public desde:number = 0;
     
-  constructor(private ticketService:TicketService) { }
+  constructor(private ticketService:TicketService,
+              private usuarioService:UsuarioService) { 
+                this.usuario = usuarioService.usuario;
+              }
 
   ngOnInit(): void {
-    this.llenarBandeja(0);
+    this.llenarBandeja(0, this.usuario);
   }
 
-  llenarBandeja(desde:number){
+  llenarBandeja(desde:number, usuario:Usuario){
     this.cargando = true;
-    this.ticketService.obtenerTickets(desde)
+    this.ticketService.obtenerTickets(desde, usuario)
         .subscribe(({total, ticket, abierto, ejecutandose, cerrado}) => {
           this.tickets = ticket;
           this.total = total;
@@ -47,7 +53,7 @@ export class BandejaComponent implements OnInit {
       this.desde = this.desde + 5;
     }
     
-    this.llenarBandeja(this.desde);
+    this.llenarBandeja(this.desde, this.usuario);
   }
 
   previous(){
@@ -56,7 +62,7 @@ export class BandejaComponent implements OnInit {
     }else{
       this.desde = this.desde - 5;
     }
-    this.llenarBandeja(this.desde);
+    this.llenarBandeja(this.desde, this.usuario);
   }
 
 }

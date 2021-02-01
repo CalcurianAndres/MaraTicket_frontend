@@ -11,6 +11,7 @@ import { notificacionForm } from '../interfaces/notificacion-form';
 import { map } from 'rxjs/operators';
 
 import { Ticket } from '../models/ticket.model';
+import { Usuario } from '../models/usuario.model';
 
 
 const base_url = environment.base_url
@@ -41,14 +42,15 @@ export class TicketService {
     return this.http.post(url, formData, {headers:this.headers});
   }
 
-  obtenerTickets(desde:number = 0){
-    const url = `${base_url}/tickets?desde=${desde}&limite=5`;
+  obtenerTickets(desde:number = 0, usuario:Usuario){
+    const departamento = usuario.Departamento;
+    const url = `${base_url}/tickets?desde=${desde}&limite=5&departamento=${departamento}`;
 
     return this.http.get<ticketsObtenidos>(url, {headers:this.headers})
       .pipe(
         map(resp =>{
           const ticket = resp.ticket.map(
-              ticket => new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario, ticket.comentarios, ticket.notificaciones, ticket.fecha)
+              ticket => new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.departamento,ticket.usuario, ticket.comentarios, ticket.notificaciones, ticket.fecha)
           );
           return {
             total:resp.total,
@@ -70,7 +72,7 @@ export class TicketService {
         map(resp => {
           const ticket = resp.ticket
 
-          this.ticket = new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.usuario, ticket.comentarios, ticket.notificaciones, ticket.fecha)
+          this.ticket = new Ticket(ticket._id,ticket.descripcion,ticket.estado,ticket.titulo,ticket.departamento, ticket.usuario, ticket.comentarios, ticket.notificaciones, ticket.fecha)
 
           return this.ticket;
         })

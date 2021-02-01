@@ -11,6 +11,7 @@ export class Ticket {
         public descripcion:string,
         public estado:string,
         public titulo:string,
+        public departamento:string,
         public usuario:Usuario[],
         public comentarios:Comentario[],
         public notificaciones:Notificacion[],

@@ -115,9 +115,9 @@
           <strong>AnyDesk: </strong> {{ticket.usuario[0].AnyDesk}} <br>
           <strong>Para: </strong>
           <div class="select">
-            <select>
-              <option value="Soporte">Sop. Técnico</option>
-              <option value="Profit">Profit</option>
+            <select [(ngModel)]="ticket.departamento">
+              <option value="soporte">Sop. Técnico</option>
+              <option value="profit">Profit</option>
             </select> 
           </div> 
           <br>
