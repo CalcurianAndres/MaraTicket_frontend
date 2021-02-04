@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:8080/api',
-  login_url: 'http://localhost:8080/login'
+  base_url: 'http://192.168.1.142:8080/api',
+  login_url: 'http://192.168.1.142:8080/login'
 };
 
 /*
