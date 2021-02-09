@@ -1,4 +1,13 @@
-<div class="card mt-5">
+<div class="level" *ngIf="cargando_">
+ <div class="level-item has-text-centered">
+     <div>
+         <p class="heading">Cargando.</p>
+         <p class="title"><i class="fas fa-circle-notch fa-pulse"></i></p>
+         <p class="tittle">Por favor espere...</p>
+     </div>
+ </div>
+</div>
+<div class="card mt-5" *ngIf="!cargando_">
   <div class="card-content">
     <div class="columns">
       <div class="column is-one-quarter has-text-centered">
@@ -40,17 +49,17 @@
             <div class="card-content">
               <div class="columns">
                 <div class="column">Abiertos</div>
-                <div class="column">0</div>
+                <div class="column">{{datosUsuario.Abiertos}}</div>
               </div>
               <hr>
               <div class="columns">
                 <div class="column">En proceso</div>
-                <div class="column">0</div>
+                <div class="column">{{datosUsuario.Ejecutandose}}</div>
               </div>
               <hr>
               <div class="columns">
                 <div class="column">Cerrados</div>
-                <div class="column">0</div>
+                <div class="column">{{datosUsuario.Cerrados}}</div>
               </div>
               <hr>
             </div>
@@ -81,39 +90,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Asunto de prueba</td>
-                <td><span class="tag is-warning is-light">Ejecutandose</span>
+              <tr *ngFor='let ticket of datosUsuario.Total'>
+                <td>{{ticket.titulo}}</td>
+                <td>
+                  <span class="tag is-success is-light" *ngIf="ticket.estado == 'ABIERTO'">{{ticket.estado}}</span>
+                  <span class="tag is-warning is-light" *ngIf="ticket.estado == 'EJECUTANDOSE'">{{ticket.estado}}</span>
+                  <span class="tag is-danger is-light" *ngIf="ticket.estado == 'CERRADO'">{{ticket.estado}}</span>
                 </td>
-                <td>04/02/2021</td>
-                <td><button class="button is-primary">Ver</button></td>
-              </tr>
-              <tr>
-                <td>Asunto de prueba</td>
-                <td><span class="tag is-warning is-light">Ejecutandose</span>
-                </td>
-                <td>04/02/2021</td>
-                <td><button class="button is-primary">Ver</button></td>
-              </tr>
-              <tr>
-                <td>Asunto de prueba</td>
-                <td><span class="tag is-warning is-light">Ejecutandose</span>
-                </td>
-                <td>04/02/2021</td>
-                <td><button class="button is-primary">Ver</button></td>
-              </tr>
-              <tr>
-                <td>Asunto de prueba</td>
-                <td><span class="tag is-warning is-light">Ejecutandose</span>
-                </td>
-                <td>04/02/2021</td>
-                <td><button class="button is-primary">Ver</button></td>
-              </tr>
-              <tr>
-                <td>Asunto de prueba</td>
-                <td><span class="tag is-warning is-light">Ejecutandose</span>
-                </td>
-                <td>04/02/2021</td>
+                <td>{{ticket.fecha | date:'dd/MM/yyyy'}}</td> 
                 <td><button class="button is-primary">Ver</button></td>
               </tr>
             </tbody>

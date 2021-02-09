@@ -11,6 +11,7 @@ import { tap, map, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { Usuario } from '../models/usuario.model';
+import { perfilObtenido } from '../interfaces/estadisticas.interface';
 
 
 const base_url = environment.base_url;
@@ -118,6 +119,13 @@ export class UsuarioService {
     return this.http.put(url, dato, {
       headers:this.headers
     });
+  }
+
+  cargarPerfil(id:string){
+    const url = `${base_url}/perfil/${id}`;
+
+    return this.http.get<perfilObtenido>(url, {headers:this.headers})
+
   }
 
 }
